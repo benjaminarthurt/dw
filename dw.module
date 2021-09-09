@@ -1,0 +1,22 @@
+<?php
+/**
+* @file
+* Provides for a means of flattening Drupal Entities into a single SQL Table for easier reporting and Datawarehouseing.
+*/
+
+function dw_cron() {
+  $cron_config = \Drupal::config('dw.settings');
+  if($cron_config->get('dw_active', 0)) {
+    $interval = $cron_config->get('interval');
+    $interval = !empty($interval) ? $interval : 3600;
+    $last_run = \Drupal::state()->get('dw.last_cron', 0);
+    $request_time = \Drupal::time()->getRequestTime();
+    if ($request_time >= $last_run + $interval) {
+      $DataWarehouse = new \Drupal\dw\Controller\DataWarehouse();
+      $count = $DataWarehouse->cron();
+      if($count) {
+        \Drupal::state()->set('dw.last_cron', \Drupal::time()->getRequestTime());
+      }
+    }
+  }
+}

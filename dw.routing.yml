@@ -1,0 +1,19 @@
+dw.settings:
+  path: '/admin/config/system/dw'
+  defaults:
+    _form: 'Drupal\dw\SettingsForm'
+    _title: 'Datawarehouse Settings'
+  requirements:
+    _permission: 'administer dw'
+dw.execute:
+  path: '/datawarehouse/execute'
+  defaults:
+    _controller: '\Drupal\dw\Controller\DataWarehouse::execute'
+  requirements:
+    _permission: 'access content'
+dw.bi:
+  path: '/datawarehouse/api/bi'
+  defaults:
+    _controller: '\Drupal\dw\Controller\DataWarehouse::bi_dump'
+  requirements:
+    _permission: 'access content'

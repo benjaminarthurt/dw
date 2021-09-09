@@ -1,0 +1,6 @@
+dw.settings:
+  title: DataWarehouse
+  description: 'Configure the collection of DataWarehouse Data.'
+  route_name: dw.settings
+  parent: system.admin_config_system
+  weight: -15

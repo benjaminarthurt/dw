@@ -1,0 +1,4 @@
+name: dw
+type: module
+description: 'Provides for a means of flattening Drupal Entities into a single SQL Table for easier reporting and Datawarehouseing'
+core: 8.x
